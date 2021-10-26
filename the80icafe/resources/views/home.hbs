@@ -1,0 +1,88 @@
+<style>
+  .header-body-left{
+    font-size: 45px;
+    font-weight: 700;
+    padding: 12px 0px;
+  }
+  .img-body-left{
+    height:290px;
+    width:100%;
+  }
+  .description-body-left{
+    font-size: 16px;
+    padding:5px 0px;
+  }
+ #btn-details{
+   width: 265px;
+   height:40px ;
+   font-size: 24px;
+   line-height:40px;
+   padding: 0px 24px;
+   color: #b22830;
+   background-color: transparent;
+    border-color: #b22830;
+ }
+ #btn-details:hover{
+   background-color: #b22830;
+   color: white;
+ }
+ .body-right{
+   width:100%;
+   display: block;
+ }
+ .img-body-right{
+   width:100%;
+ }
+ .body-full{
+   background-color:#fbedd7
+ }
+ .form-menu{
+   padding-bottom: 80px;
+ }
+ .img-item-right{
+   height:150px;
+   width:150px;
+   padding:0;
+   margin-top:30px;
+ }
+ .name-item-right{
+   font-size:24px;
+ }
+ .description-item-right{
+   font-size:16px;
+ }
+ .card-body{
+   width:210px;
+   height:70px;
+ }
+  .item-right{
+    margin-top:60px;
+    flex-wrap: wrap;
+  }
+</style>
+<div class="body-full">
+<div class="container " >
+{{#each menu}}
+<form mothod  = "GET" action="" class = "row  form-menu">
+    <div class="col-lg-8 col-sm-12">
+      <h1 class = "header-body-left">{{this.name}}</h1>
+        <img class = "img-body-left" src="{{this.img}}" alt="">
+      <p class="description-body-left">{{this.description}}</p>
+      <button type="button" class="btn btn-primary btn-lg" id = "btn-details">Tìm hiểu thêm</button>
+    </div>
+
+    <div class="col-lg-4 col-sm-12  d-flex item-right">
+      <div class="d-flex row" style="">
+        <img class="img-item-right col-lg-5 col-sm-4" src="{{this.img_item}}" alt="Card image cap">
+        <div class="card-body col-lg-7 col-sm-8">
+          <h3 class = "name-item-right">{{this.name}}</h3>
+          <p class="description-item-right ">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      </div>
+        </div>
+  </div>
+</form>
+ {{/each}}
+  </div>
+
+</div>
+</div>

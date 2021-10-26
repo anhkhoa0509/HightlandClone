@@ -1,0 +1,240 @@
+<style>
+    .admin{
+        background-color:#fbedd7;
+        padding-top: 40px;
+    }
+      .changs-page{
+      padding: 12px 0px;
+    }
+</style>
+<div class="admin">
+    <form method = "POST" action = "/admin/handle-form" class="container container-form ">
+    <h2 >Danh sách thức uống đã xóa</h2>
+    <div class="d-flex changs-page">
+      <a href = "/admin" class = " btn btn-success mr-4">Đi để trở về</a>
+      <a href = "/trashMenu " class = " btn btn-success">Các món đã xóa</a>
+    </div>
+
+    <div class="form-check mb-4 d-flex align-items-center"  >
+        <input type="checkbox" class="form-check-input checkbox-all"  />
+        <label class="form-check-label" for="exampleCheck1">Chọn tất cả</label>
+        <div class="input-group col-6">
+        <select class="custom-select select-action" name = "action" >
+            <option >Chọn chức năng</option>
+            <option value="Restore">Phục hồi</option>
+            <option value="DeleteAll">Xoá</option>
+        </select>
+        </div>
+        <button type="button" class="btn btn-primary btnSubmit " disabled = "disabled">Thực hiện</button>
+    </div>
+     <table class="table table-hover table-dark">
+        <thead>
+        <tr>
+            <th scope="col">Espresso</th>
+            <th scope="col">Tên thức uống</th>
+            <th scope="col">Giá </th>
+            <th scope="col" class = "text-center">Tùy chọn</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each cafe}}
+            <tr>
+            <th scope="row"><input type="checkbox" name = "coursesIds[]" value = {{this._id}} class="item-checkbox"  /> {{this._id}}</th>
+            <td>{{this.name}}</td>
+            <td>{{this.price}}</td>
+            <td>
+                <a href="" class = "btn btn-link btn-restore" data-id = "{{this._id}}">Khôi phục</a>
+                <a data-toggle="modal" class = "btn btn-link" data-id = "{{this._id}}" data-target="#btn-deleted" href="">Xóa vĩnh viễn</a>
+            </td>
+            </tr>
+            {{else}}
+                <tr  >
+                <td colspan="4" class = "text-center">Túi của bạn (vì nó trống rỗng) <a href="/Courses/create" class="">Quay lại danh sách khóa học</a></td>
+                
+                </tr>
+        {{/each}}
+        </tbody>
+    </table>
+      <table class="table table-hover table-dark">
+        <thead>
+        <tr>
+            <th scope="col">Phindi</th>
+            <th scope="col">Tên thức uống</th>
+            <th scope="col">Giá </th>
+            <th scope="col" class = "text-center">Tùy chọn</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each phindi}}
+            <tr>
+            <th scope="row"><input type="checkbox" name = "coursesIds[]" value = {{this._id}} class="item-checkbox"  /> {{this._id}}</th>
+            <td>{{this.name}}</td>
+            <td>{{this.price}}</td>
+            <td>
+                <a href="" class = "btn btn-link btn-restore" data-id = "{{this._id}}">Khôi phục</a>
+                <a data-toggle="modal" class = "btn btn-link" data-id = "{{this._id}}" data-target="#btn-deleted" href="">Xóa vĩnh viễn</a>
+            </td>
+            </tr>
+            {{else}}
+                <tr  >
+                <td colspan="4" class = "text-center">Túi của bạn (vì nó trống rỗng) <a href="/Courses/create" class="">Quay lại danh sách khóa học</a></td>
+                
+                </tr>
+        {{/each}}
+        </tbody>
+    </table>
+      <table class="table table-hover table-dark">
+        <thead>
+        <tr>
+            <th scope="col">Espresso</th>
+            <th scope="col">Tên thức uống</th>
+            <th scope="col">Giá </th>
+            <th scope="col" class = "text-center">Tùy chọn</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each espresso}}
+            <tr>
+            <th scope="row"><input type="checkbox" name = "coursesIds[]" value = {{this._id}} class="item-checkbox"  /> {{this._id}}</th>
+            <td>{{this.name}}</td>
+            <td>{{this.price}}</td>
+            <td>
+                <a href="" class = "btn btn-link btn-restore" data-id = "{{this._id}}">Khôi phục</a>
+                <a data-toggle="modal" class = "btn btn-link" data-id = "{{this._id}}" data-target="#btn-deleted" href="">Xóa vĩnh viễn</a>
+            </td>
+            </tr>
+            {{else}}
+                <tr  >
+                <td colspan="4" class = "text-center">Túi của bạn (vì nó trống rỗng) <a href="/Courses/create" class="">Quay lại danh sách khóa học</a></td>
+                
+                </tr>
+        {{/each}}
+        </tbody>
+    </table>
+    
+    </form>
+
+</div>
+
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="btn-deleted"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="btn-deletedLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="btn-deletedLabel">Cảnh báo lần cuối</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Xóa lần này đéo thể lấy lại được đâu
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+        >Thôi, đừng xóa</button>
+        <button id = "btnDelete" type="button" class="btn btn-danger">Xóa đi</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form id ="form-temp" method="POST"></form>
+<form id ="form-restore" method="POST"></form>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    var recipient
+    const btnDelete = document.getElementById('btnDelete')
+    const form = document.getElementById('form-temp')
+    const formRestore = document.getElementById('form-restore')
+    const restorebtn = $('.btn-restore')
+
+    $('#btn-deleted').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        recipient = button.data('id')
+    })  
+    btnDelete.onclick = function (event) {
+      form.action = '/admin/' +  recipient + '/destroyPower?_method=DELETE'
+      form.submit()
+    }
+    restorebtn.click(function (event) {
+      event.preventDefault()
+      const id = $(this).data('id')
+      formRestore.action = 'admin/' +id + '/restore?_method=PATCH'
+      formRestore.submit()
+    })
+
+
+    
+    const btnCheckboxAll = $('.checkbox-all')
+    const btnCheckItem = $('input[name = "coursesIds[]"]')
+    const btnSubmit = $('.btnSubmit')
+    const containerForm = $('.container-form')
+    const selectAction = $('.select-action')
+
+
+
+    btnCheckboxAll.change((e)=>{
+    const isCheckedAll = btnCheckboxAll.prop('checked')
+    btnCheckItem.prop('checked',isCheckedAll)
+    renderButtonSubmit()
+
+    {{!-- if(isCheckedAll){
+      btnCheckItem.prop('checked',true)
+    }else{
+       btnCheckItem.prop('checked',false)
+    } --}}
+    
+   })
+
+   
+   btnCheckItem.change((e)=>{
+     const isItemCheckAll = btnCheckItem.length === $('input[name = "coursesIds[]"]:checked').length
+     btnCheckboxAll.prop('checked',isItemCheckAll)
+     renderButtonSubmit()
+   })
+  
+  selectAction.change((e)=>{
+     renderButtonSubmit()
+   })
+  
+  function renderButtonSubmit(){
+    var isValue = $('select[name=action] option').filter(':selected').val() !== 'Chọn chức năng'
+    var isSubmit = $('input[name = "coursesIds[]"]:checked').length
+    if(isSubmit > 0 && isValue){
+      btnSubmit.removeAttr('disabled')
+    }
+    else{
+      btnSubmit.attr('disabled')
+    }
+  }
+
+  btnSubmit.click((e)=>{
+   e.preventDefault()
+    var isSubmit = !btnSubmit.hasClass('disabled')
+    if(isSubmit){
+      containerForm.submit()
+    }
+  })
+
+})
+
+</script>

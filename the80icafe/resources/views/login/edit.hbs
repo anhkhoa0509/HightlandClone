@@ -1,0 +1,26 @@
+<div class="mt-4 mb-4">
+  <div class="container">
+
+  <form method="POST" action="/admin/{{value._id}}?_method=PUT">
+  <h2>Chỉnh thức</h2>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Tên thức uống</label>
+      <input type="text" class="form-control" value = "{{value.name}}" id="name" name="name" />
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Giá </label>
+      <input
+        class="form-control"
+       id="price"
+        name="price"value = {{value.price}}></input>
+     
+    </div>
+    <div class="mb-3">
+      <label for="videoID" class="form-label">Imagine nhưng không có Dragons</label>
+      <input type="text" class="form-control" value = "{{value.img}}" id="videoID" name="videoID" />
+    </div>
+    <button type="submit" class="btn btn-primary">Update khóa học</button>
+  </form>
+  </div>
+
+</div>

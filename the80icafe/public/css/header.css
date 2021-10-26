@@ -1,0 +1,169 @@
+    .img-header {
+      width: 110px;
+      height: 80px;
+    }
+    .nav-link{
+      font-size: 18px;
+      font-weight:700;
+      color: white
+      
+    }
+    .btn-bars{
+        background-color:#53382c;
+        color: white;
+
+    }
+    .header {
+      padding: -20px 0px;
+      height: 122px;
+      font-size: 24px;
+    }
+    .navbar-header{
+      height: 100%;
+    }
+    .btn-option{
+      background-color: #53382c;
+    }
+    .btn-search{
+      border: 1px solid #53382c;
+    }
+    .btn-search:hover{
+      background-color: #53382c;
+      color:white;
+    }
+    .navbar-toggler-icon{
+      color: white;
+    }
+    .nav-link{
+      padding: 6px;
+    }
+    .nav-link:hover{
+       background-color: #53382c;
+       color: white
+    }
+    .menu-container{
+      position: relative;
+    }
+    .item-menu{
+      display:none;
+      position:absolute;
+      width: 100%;
+      background-color: #53382c;
+      height: 295px;
+      z-index: 10;
+      left: 0;
+      top:100%;
+      padding: 12px 0px;
+    }
+    .item-menu-coffe:hover .item-menu{
+        display:flex;
+    }
+    .item-menu-news:hover .item-menu{
+       display:flex;
+    }
+    .item-menu-community:hover .item-menu{
+      display:flex;
+    }
+    .item-menu-me:hover .item-menu{
+        display:flex;
+    }
+    .item-menu-coffe::before {
+      position: absolute;
+      content: "";
+      width: 88px;
+      height: 52px;
+      top: 80px;
+      z-index: 12;
+      background-color: transparent;
+    }
+    .item-menu-news::before {
+      position: absolute;
+      content: "";
+      width: 88px;
+      height: 52px;
+      top: 80px;
+      z-index: 12;
+      background-color: transparent;
+    
+    }
+    .item-menu-community::before {
+      position: absolute;
+      content: "";
+      width: 260px;
+      height: 52px;
+      top: 70px;
+      z-index: 12;
+      background-color: transparent;
+    }
+    .item-menu-me::before {
+      position: absolute;
+      content: "";
+      width: 88px;
+      height: 52px;
+      top: 80px;
+      z-index: 12;
+      background-color: transparent;
+    
+    }
+    .items-menu_coffe{
+      text-align: center;
+      list-style: none;
+      color:white;
+      cursor: pointer;
+    }
+    .item-menu_coffe-header{
+      font-size:18px;
+      margin: 12px 0px;
+      font-weight: 700;
+      color: #f1bc7a;
+    }
+    .item-menu_coffe-header:hover{
+      color: white;
+    }
+    .item-menu_coffe{
+      font-size: 16px;
+    }
+    .item-menu_coffe:hover{
+      padding-left: 5px;
+    }
+    
+    .items-menu_coffe-img{
+      background-image: url(https://www.highlandscoffee.com.vn/skins/default/images/bgmenu.jpg);
+      width:100%;
+      height : 100%;
+    }
+
+    .item-menu-text_coffe{
+      font-size:18px;
+      padding-top: 18px;
+      border:0;
+      color: #f1bc7a;
+      font-weight:700;
+    }
+    .item-menu-text_coffe:hover{
+      color: white;
+
+    }
+    .item-link_coffe:hover{
+      text-decoration: none
+    }
+    .item-img_coffe{
+      padding-bottom: 6px;;
+    }
+
+
+
+    @media (max-width: 1023px){
+      .navbar-toggler-icon{
+        width: 24px;
+        height: 24px;
+      }
+      .btn-option,
+      .img-header{
+        margin-top: -24px;
+        padding-top:12px;
+      }
+      .item-menu{
+        display: none !important;
+      }
+    }

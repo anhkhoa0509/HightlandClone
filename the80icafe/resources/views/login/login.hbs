@@ -1,0 +1,159 @@
+<style>
+    .background__log {
+    padding: 48px 48px 36px 48px;
+    top: -165px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+.form-message{
+    color: red;
+}
+.log__in {
+    font-size: 36px;
+}
+
+.log__in-text {
+    font-size: 24px;
+    color: #222;
+    padding: 48px 0px;
+}
+
+.log__in-input {
+    width: 100%;
+    padding: 24px 36px;
+    margin-bottom: 12px;
+    border-radius: 32px;
+    outline: none;
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+.login__icon-mail {
+    position: absolute;
+    font-size: 24px;
+    top: 260px;
+    left: 312px;
+}
+
+.login__icon-lock {
+    position: absolute;
+    font-size: 24px;
+    top: 382px;
+    left: 312px;
+}
+
+.btn--log__in {
+    width: 100%;
+    height: 70px;
+    line-height: 35px;
+    font-size: 28px;
+    box-shadow: 0 4px 12px 0 rgb(246 116 57 / 40%);
+    background: #b22830;
+    border-radius: 32px;
+    background-size: 200% auto;
+    color: white;
+    line-height:50px;
+}
+
+.password__forget {
+    font-size: 24px;
+    font-weight: 400;
+    padding-top: 36px;
+    text-align: center;
+}
+
+.password__forget-link {
+    text-decoration: none;
+    color: #f65e39;
+}
+
+.password__forget-link:hover {
+    color: black;
+}
+
+.btn--log__in:hover {
+    opacity: 1;
+}
+
+.or {
+    padding: 24px 0px;
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.btn--log__in--local {
+    background: white;
+    color: #777;
+    font-size: 24px;
+    font-weight: 400;
+    box-shadow: none;
+    border: 1px solid #ccc;
+}
+
+.btn--log__in--local:hover {
+    color: #f65e39;
+}
+
+.gird__body--login {
+    margin-top: 400px;
+    text-align: center;
+}
+
+.log__in-text--reg {
+    padding-bottom: 24px;
+    color: #222;
+}
+
+.login__icon-mail--reg {
+    top: 206px;
+}
+</style>
+<div class="container">
+
+<div class="grid_column-2-3 " >
+    <form class="background__log" id = "form-1" >
+        <h3 class="log__in text-center">Đăng nhập</h3>
+        <h3 class="log__in-text text-center">Đăng nhập tài khoản admin của bạn!</h3>
+        <div class="form-group">
+            <input type="text" id="log__in-input" name = "account" class="log__in-input" placeholder="Địa chỉ email">
+        
+            <span class="form-message"></span>
+        </div>
+        <div class="form-group">
+            <input type="password" id = "password-input" name = "password"class="log__in-input " placeholder="Mật khẩu">
+            <span class="form-message"></span>
+        </div>
+        <a id = "form-submit" class="btn btn--log__in" href = "admin">Đăng nhập</a>
+        <p class="password__forget">Quên mật khẩu?<a href="" class="password__forget-link"> Nhấn vào
+                đây</a>
+        </p>
+        <p class="password__forget">Bạn chưa có tài khoản Hightlands?<a href=""
+                class="password__forget-link">
+                Đăng ký</a> </p>
+        <p class="or">Hoặc</p>
+        <button class="btn btn--log__in btn--log__in--local">Đăng nhập với <i
+                class="fab fa-facebook"></i></button>
+        <p class="or childofbtn">Facebook</p>
+        <button class="btn btn--log__in btn--log__in--local">Đăng nhập với <i
+                class="fab fa-google"></i></i></button>
+        <p class="or childofbtn">Google</p>
+    </form>
+    </div>
+</div>
+    <script src="/javascript/fontdk.js"></script>
+ <script>
+        Validator({
+            form: '#form-1',
+            errorSelector: '.form-message',
+            formGourpSelector: '.form-group',
+            rules: [
+                Validator.isRequired('#log__in-input', 'Vui lòng nhập tài khoản của bạn'),
+                Validator.minLength('#password-input', 6, 'Mật khẩu không thỏa điều kiện, vui lòng nhập lại'),
+            ],
+             onSubmit: function (data) {
+                 console.log(data);
+             }
+        })
+    </script>

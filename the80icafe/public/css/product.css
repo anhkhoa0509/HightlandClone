@@ -1,0 +1,101 @@
+    .banner-product-tea,
+  .banner-product-freeze,
+  .banner-product-cafe{
+    background-image: url(https://www.highlandscoffee.com.vn/vnt_upload/product/04_2018/menu-PSD-bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width:100%;
+  }
+  .banner-product-freeze{
+    background-image: url(https://www.highlandscoffee.com.vn/vnt_upload/product/04_2018/menu-FREEZE.jpg);
+  }
+   .banner-product-tea{
+    background-image: url(https://www.highlandscoffee.com.vn/vnt_upload/product/04_2018/menu-TEA-bg.jpg);
+
+   }
+   .banner-product-tea-body,
+  .banner-product-freeze-body,
+  .banner-product-cafe-body{
+    width:100%;
+    height:100%;
+    color: #f9ead6;
+    padding-top: 36px;
+    animation: product-load-text linear 1s;
+  }
+ 
+  .banner-product-freeze-body{
+    color: #006400;
+  }
+  
+  .banner-product-header{
+    font-size:36px;
+    font-weight:700;
+  }
+  .banner-product-text{
+    padding-top: 16px;
+    font-size:20px;
+    font-weight:600
+  }
+  .btn-product-tea,
+  .btn-product-freeze,
+  .btn-product-cafe{
+    bottom: 14%;
+    width: 250px;
+    height: 40px;
+    font-size:18px;
+    border: 1px solid white;
+    color: white;
+    line-height: 17px;
+    animation: btn-linear linear  0.8s
+  }
+  .btn-product-freeze{
+    border: 1px solid #006400;
+   color: #006400;
+  }
+  .btn-product-tea:hover,
+  .btn-product-freeze:hover,
+  .btn-product-cafe:hover{
+    background-color:#b22830;
+    color: white;
+  }
+  .product-tea,
+  .product-freeze,
+  .product-cafe{
+    flex-wrap: wrap;
+  }
+  .banner-product-cafe-img{
+    display:flex;
+    justify-content: flex-end;
+  }
+  @keyframes product-load-text {
+    0%{
+      opacity:0;
+      padding-top: 70px;
+    }
+    100%{
+      opacity:1;
+      padding-top: 36px;
+    }
+}
+  @media (max-width:767px){
+    .product-tea,
+    .product-cafe{
+      flex-direction: column-reverse;;
+      padding:40px 0px 40px 0px;
+    }
+    .product-freeze{
+      padding:40px 0px 40px 0px;
+
+    }
+    .banner-product-img_body{
+      width:100%;
+    }
+    .banner-product-cafe-img{
+      display:flex;
+      justify-content: center;
+    }
+    .banner-product-text{
+    padding-top: 16px;
+    font-weight:600
+  }
+  }

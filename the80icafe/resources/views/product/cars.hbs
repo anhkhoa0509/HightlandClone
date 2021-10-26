@@ -1,0 +1,198 @@
+<style>
+    .cart-left{
+        border:1px solid #ccc;
+    }
+    .cart-left-header{
+        display: flex;
+        padding-left: 24px ;
+        justify-content: space-between
+    }
+    .cart-left-body{
+    }
+    .cart-body-items{
+        list-style: none;
+        padding:0;
+    }
+    .cart-body-item{
+        width:100%;
+        display: flex;
+        background-color:#ccc;
+        margin-bottom:12px;
+    }
+    .cart-body-item-img{
+        
+    }
+    .cart-body-item-main{
+        margin: auto;
+    }
+    .body-item-main_name{
+        font-size:24px;
+        font-weight: 700;
+        color:#53382c;
+        padding-top:12px;
+        margin-bottom:12px;
+    }
+    .body-item-main_price{
+        font-size:18px;
+      padding-left:12px;
+    }
+    .cart-body-item-handle{
+        margin:auto;
+    }
+    .cart-body-item-handle_body{
+        display:flex;
+        height:30px;
+    }
+    .body-item-handle_icon{
+        padding: 6px 24px;
+        background-color: white;
+        font-size: 12px;
+        border-radius: 24px;
+        color: #53382c;
+    }
+    .value-number {
+        padding: 0 6px;
+    }
+     .cart-body-item-handle_text {
+         text-align: center;
+         padding: 12px 12px 0px 0px;
+     }
+</style>
+
+
+
+<div class="container">
+    <div class="col-lg-8 cart-left mt-4">
+        <div class="cart-left-header">
+            <div >
+                <input type="checkbox" class="form-check-input checkbox-all"  />
+                <label>Chọn tất cả</label>
+            </div>
+            <div>
+                <i class="far fa-trash-alt"></i>
+                <label>Xóa</label>
+            </div>
+        </div>
+        {{#each listItem}}
+        <div class="cart-left-body">
+            <ul class="cart-body-items">
+                <li class="cart-body-item ">
+                    <img src="{{this.img}}" alt="" class="cart-body-item-img col-lg-3">
+                    <div class="col-lg-6 cart-body-item-main"> 
+                        <p class="body-item-main_name">
+                            {{listItem.name}}
+                        </p>
+                        <p class="body-item-main_price">
+                          GIÁ: {{listItem.price}} VND
+                        </p>
+                     </div>
+                     <div class="col-lg-3 cart-body-item-handle">
+                         <div class="cart-body-item-handle_body">
+                             <a href="" class="body-item-handle_icon"><i class="fas fa-minus"></i></a>
+                            <p class="value-number">01</p>
+                             <a href="" class="body-item-handle_icon"><i class="fas fa-plus"></i></a>
+                         </div>
+                         <p class="cart-body-item-handle_text">Xóa</p>
+                     </div>
+                </li>
+
+            </ul>
+        </div>
+        {{/each}}
+        
+       
+    </div>
+    
+    <div class="col-lg-4"></div>
+</div>
+
+
+
+   
+
+<!-- Modal -->
+
+<form id ="form-temp" method="POST"></form>
+<form id ="form-restore" method="POST"></form>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    var recipient
+    const btnDelete = document.getElementById('btnDelete')
+    const form = document.getElementById('form-temp')
+    const formRestore = document.getElementById('form-restore')
+    const restorebtn = $('.btn-restore')
+
+    $('#btn-deleted').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        recipient = button.data('id')
+       
+    })  
+    btnDelete.onclick = function (event) {
+      form.action = '/Courses/' +  recipient + '/destroy?_method=DELETE'
+      form.submit()
+    }
+    restorebtn.click(function (event) {
+      event.preventDefault()
+      const id = $(this).data('id')
+      formRestore.action = '/Courses/' +  id + '/restore?_method=PATCH'
+      formRestore.submit()
+    })
+
+
+    
+    const btnCheckboxAll = $('.checkbox-all')
+    const btnCheckItem = $('input[name = "coursesIds[]"]')
+    const btnSubmit = $('.btnSubmit')
+    const containerForm = $('.container-form')
+    const selectAction = $('.select-action')
+
+
+
+    btnCheckboxAll.change((e)=>{
+    const isCheckedAll = btnCheckboxAll.prop('checked')
+    btnCheckItem.prop('checked',isCheckedAll)
+    renderButtonSubmit()
+
+    {{!-- if(isCheckedAll){
+      btnCheckItem.prop('checked',true)
+    }else{
+       btnCheckItem.prop('checked',false)
+    } --}}
+    
+   })
+
+   
+   btnCheckItem.change((e)=>{
+     const isItemCheckAll = btnCheckItem.length === $('input[name = "coursesIds[]"]:checked').length
+     btnCheckboxAll.prop('checked',isItemCheckAll)
+     renderButtonSubmit()
+   })
+  
+  selectAction.change((e)=>{
+     renderButtonSubmit()
+   })
+  
+  function renderButtonSubmit(){
+    var isValue = $('select[name=action] option').filter(':selected').val() !== 'Chọn chức năng'
+    var isSubmit = $('input[name = "coursesIds[]"]:checked').length
+    if(isSubmit > 0 && isValue){
+      btnSubmit.removeAttr('disabled')
+    }
+    else{
+      btnSubmit.attr('disabled')
+    }
+  }
+
+  btnSubmit.click((e)=>{
+   e.preventDefault()
+    var isSubmit = !btnSubmit.hasClass('disabled')
+    if(isSubmit){
+      containerForm.submit()
+    }
+  })
+
+})
+
+</script>

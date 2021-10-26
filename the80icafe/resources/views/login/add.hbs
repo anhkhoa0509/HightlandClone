@@ -1,0 +1,110 @@
+<div class="mt-4 mb-4">
+  <div class="container">
+
+  <form method="POST" action="/admin/create?_method=POST">
+  <h2>Thêm thức uống</h2>
+   <div class="form-check mb-4 d-flex align-items-center"  >
+        <label class="form-check-label" for="exampleCheck1">Chọn loại</label>
+        <div class="input-group col-6">
+        <select class="custom-select select-action" name = "action" >
+            <option >Chọn mục</option>
+            <option value="cafe">Cà phê</option>
+            <option value="phindi">Phindi</option>
+            <option value="espresso">Espresso</option>
+            
+        </select>
+        </div>
+        <a href = "/admin" type="button" class="btn btn-primary btnSubmit ">Quay lại</a>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Tên thức uống</label>
+      <input type="text" class="form-control" value = "{{value.name}}" id="name" name="name" />
+    </div>
+    <div class="mb-3">
+      <label for="price" class="form-label">Giá </label>
+      <input
+        class="form-control"
+       id="price"
+        name="price"value = {{value.price}}></input>
+     
+    </div>
+    <div class="mb-3">
+      <label for="img" class="form-label">Imagine nhưng không có Dragons</label>
+      <input type="text" class="form-control" value = "{{value.img}}" id="img" name="img" />
+    </div>
+    <button type="submit" class="btn btn-primary">Update thức uống</button>
+  </form>
+  </div>
+
+</div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    var recipient
+    const btnDelete = document.getElementById('btnDelete')
+    const form = document.getElementById('form-temp')
+    const formRestore = document.getElementById('form-restore')
+    const restorebtn = $('.btn-restore')
+
+    $('#btn-deleted').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        recipient = button.data('id')
+    })  
+    btnDelete.onclick = function (event) {
+      form.action = '/admin/' +  recipient + '/destroy?_method=DELETE'
+      form.submit()
+    }
+    restorebtn.click(function (event) {
+      event.preventDefault()
+      const id = $(this).data('id')
+      formRestore.action = '/admin/' +  id + '/edit?_method=GET'
+      formRestore.submit()
+    })
+
+
+    
+    const btnCheckboxAll = $('.checkbox-all')
+    const btnCheckItem = $('input[name = "coursesIds[]"]')
+    const btnSubmit = $('.btnSubmit')
+    const containerForm = $('.container-form')
+    const selectAction = $('.select-action')
+
+
+
+    btnCheckboxAll.change((e)=>{
+    const isCheckedAll = btnCheckboxAll.prop('checked')
+    btnCheckItem.prop('checked',isCheckedAll)
+    renderButtonSubmit()
+
+    {{!-- if(isCheckedAll){
+      btnCheckItem.prop('checked',true)
+    }else{
+       btnCheckItem.prop('checked',false)
+    } --}}
+    
+   })
+
+   
+   btnCheckItem.change((e)=>{
+     const isItemCheckAll = btnCheckItem.length === $('input[name = "coursesIds[]"]:checked').length
+     btnCheckboxAll.prop('checked',isItemCheckAll)
+     renderButtonSubmit()
+   })
+  
+  selectAction.change((e)=>{
+     renderButtonSubmit()
+   })
+  
+
+  btnSubmit.click((e)=>{
+   e.preventDefault()
+    var isSubmit = !btnSubmit.hasClass('disabled')
+    if(isSubmit){
+      containerForm.submit()
+    }
+  })
+
+})
+
+</script>
